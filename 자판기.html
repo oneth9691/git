@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자판기</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<style>
+    .main {
+        width: 865px;
+        height: 103px;
+        border: 1px solid #000;
+    }
+
+    .menu {
+        width: 120px;
+        height: 102px;
+        float: left;
+        border: 1px solid #000;
+
+    }
+
+    .calculate {
+        width: 250px;
+        height: 102px;
+        float: left;
+        border: 1px solid #000;
+    }
+
+    .choise {
+        position: relative;
+        bottom: -32%;
+        width: 100%;
+        height: 20%;
+        border: 1px solid #000;
+    }
+
+    .quantity {
+        position: relative;
+        top: 30%;
+        width: 100%;
+        border: 1px solid #000;
+    }
+
+    .inventory {
+        width: 50%;
+    }
+
+    button {
+        background: rgb(4, 236, 82);
+    }
+</style>
+
+<body>
+    <div class="main">
+        <div class="menu">콜라 1200원
+            <div class="quantity">
+                <label>수량:
+                    <input type="text" class="inventory" id="inventory01" value="">
+                </label>
+            </div>
+            <button class="choise" id="choise01" value="1200"></button>
+        </div>
+        <div class="menu">식혜 800원
+            <div class="quantity">
+                <label>수량:
+                    <input type="text" class="inventory" id="inventory02" value="">
+                </label>
+            </div>
+            <button class="choise" value="800"></button>
+        </div>
+        <div class="menu">커피 500원
+            <div class="quantity">
+                <label>수량:
+                    <input type="text" class="inventory" id="inventory03" value="">
+                </label>
+            </div>
+            <button class="choise" value="500"></button>
+        </div>
+        <div class="menu">생수 1000원
+            <div class="quantity">
+                <label>수량:
+                    <input type="text" class="inventory" id="inventory04" value="">
+                </label>
+            </div>
+            <button class="choise" value="1000"></button>
+        </div>
+        <div class="menu">식혜 700원
+            <div class="quantity">
+                <label>수량:
+                    <input type="text" class="inventory" id="inventory05" value="" readonly="readonly" />
+                </label>
+            </div>
+            <button class="choise" value="700"></button>
+        </div>
+
+        <div class="calculate">
+            <button class="money" value="100">100원</button>
+            <button class="money" value="500">500원</button>
+            <button class="money" value="1000">1000원</button>
+            <button class="pay">잔돈반환</button>
+            <input type="text" class="show" value="0" readonly="readonly" />
+        </div>
+    </div>
+</body>
+
+<script>
+    window.onload = function () {
+        let inventory01 = document.getElementById("inventory01");
+        inventory01.value = 3;
+
+
+    }
+    // var array = new Array();
+    let price = 0; //구매음료합산금액
+    let array_sum = 0; //입금합산
+    let last_money = 0; //최종반환금액
+
+    $(".money").click(function () { // 입금
+        array_sum += Number($(this).val());
+        $(".show").val(array_sum);
+    });
+
+    $('.choise').click(function () { // 음료수 선택 버튼
+        $(".show").val(array_sum);
+        price += Number($(this).val());
+        //console.log("구매음료합산금액:" + price);
+        if (array_sum < price) {
+            //console.log("부족합니다:" + price);
+            alert("금액이 부족합니다." + array_sum);
+        } else {
+            var id = $(this).attr('id');
+            //console.log("ID:" + id);
+            if (id = "choise01") {
+                Number(inventory01.value) - 1;
+
+            }
+            last_money = array_sum - price;
+            alert("음료");
+            $(".show").val(last_money);
+            array_sum = last_money;
+        }
+        price -= Number($(this).val())
+        // console.log("구매음료합산금액:" + price); return price;
+    });
+
+    $(".pay").click(function () { // 잔돈 반환 버튼
+        if (array_sum == 0) {
+            alert("반환금이 없습니다");
+            $(".show").val(0);
+        } else {
+            last_money = array_sum - price;
+            alert("반환금:" + last_money);
+            array_sum = 0;
+            $(".show").val(0);
+        }
+
+    });
+
+    // function calculation() {     // 입금합산 함수
+
+    //     for (let i = 0; i < array.length; i++) {
+    //         array_sum = array.reduce((a, b) => {
+    //             return a + b;
+    //         });
+    //     }
+    //     return array_sum;
+    // }
+
+</script>
+
+</html>
