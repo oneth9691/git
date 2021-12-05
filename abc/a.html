@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>쿵쿵따</title>
 </head>
+
 <body>
     <div><span id="order"></span>번째 참가자</div>
     <div>제시어:<span id="word"></span></div>
@@ -15,34 +17,33 @@
 </body>
 
 <script>
-  
     const number = Number(prompt('몇명 참가?'));
     const $button = document.querySelector('button');
     const $input = document.querySelector('input');
     const $word = document.querySelector('#word');
-    const $order = document.querySelector('#order');//순서
+    const $order = document.querySelector('#order'); //순서
     let word; //제시어
-    let newWord; //현재단어 
-    
+    let newWord; //현재단어
+
 
 
     const onClickButton = () => {
-    //
-    /*if(!word){// 비어있으면
-            
-            word = newWord;
-            $word.textContent = word;
-            const order =Number($order.textContent);
-            if(order + 1 > number){
-                $order.textContent = 1;
-            }else{
-                $order.textContent = order + 1;
-            }
+        //
+        /*if(!word){// 비어있으면
+                        
+                        word = newWord;
+                        $word.textContent = word;
+                        const order =Number($order.textContent);
+                        if(order + 1 > number){
+                            $order.textContent = 1;
+                        }else{
+                            $order.textContent = order + 1;
+                        }
 
-        }else{
-            if(word[word.length - 1] === newWord[0])
-            {
-                word = newWord;
+                    }else{
+                        if(word[word.length - 1] === newWord[0])
+                        {
+                            word = newWord;
                 $word.textContent = word;   
                 const order =Number($order.textContent);
                 if(order + 1 > number){
@@ -58,39 +59,33 @@
 
         }
     */
-        if(!word || word[word.length - 1] === newWord[0])
-        {
+        if (!word || word[word.length - 1] === newWord[0]) {
             word = newWord;
             $word.textContent = word;
-            const order =Number($order.textContent);
-            if(order + 1 > number){
-                    $order.textContent = 1;
-                    alert("한바퀴");
-            }else{
+            const order = Number($order.textContent);
+            if (order + 1 > number) {
+                $order.textContent = 1;
+                alert("한바퀴");
+            } else {
                 $order.textContent = order + 1;
             }
-        
-        }else{
+
+        } else {
             alert("틀림");
         }
 
-        $input.value ='';
+        $input.value = '';
         $input.focus();
     };
-    
+
     const onInput = (event) => {
         newWord = event.target.value;
     };
 
-    if(number)
-    {
-        $button.addEventListener('click',onClickButton);
-        $input.addEventListener('input',onInput);
+    if (number) {
+        $button.addEventListener('click', onClickButton);
+        $input.addEventListener('input', onInput);
     }
-   
-
-
 </script>
 
 </html>
-

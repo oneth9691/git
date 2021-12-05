@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,27 +8,47 @@
     <title>계산기</title>
 </head>
 <style>
-    *{ box-sizing:border-box }
-    #result {width: 180px; height: 50px; margin: 5px; text-align: right;}
-    #operator{width: 50px; height: 50px; margin: 5px; text-align: center;}
-    button{width: 50px; height: 50px; margin: 5px;}
+    * {
+        box-sizing: border-box
+    }
+
+    #result {
+        width: 180px;
+        height: 50px;
+        margin: 5px;
+        text-align: right;
+    }
+
+    #operator {
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+        text-align: center;
+    }
+
+    button {
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+    }
 </style>
+
 <body>
 
     <input readonly id="operator">
     <input readonly type="number" id="result">
 
-   <div class="row">
+    <div class="row">
         <button id="num-7">7</button>
         <button id="num-8">8</button>
         <button id="num-9">9</button>
         <button id="plus">+</button>
-   </div>
-   <div class="row">
-    <button id="num-4">4</button>
-    <button id="num-5">5</button>
-    <button id="num-6">6</button>
-    <button id="minus">-</button>
+    </div>
+    <div class="row">
+        <button id="num-4">4</button>
+        <button id="num-5">5</button>
+        <button id="num-6">6</button>
+        <button id="minus">-</button>
     </div>
     <div class="row">
         <button id="num-1">1</button>
@@ -41,35 +62,34 @@
         <button id="calculate">=</button>
         <button id="multipy">X</button>
     </div>
-
+    sdasddddd
 </body>
 <script>
-
-    let numOne ='';
-    let operator ='';
-    let numTwo ='';
+    let numOne = '';
+    let operator = '';
+    let numTwo = '';
 
     const $operator = document.querySelector('#operator');
     const $result = document.querySelector('#result');
 
     const onClickNumber = (event) => {
 
-        if(!operator){
+        if (!operator) {
 
             numOne += event.target.textContent;
             $result.value += event.target.textContent;
             return;
 
-        //아래로는 오퍼레이터가 있을 경우만 실행
-        }else{
-            
-            if(!numTwo){
+            //아래로는 오퍼레이터가 있을 경우만 실행
+        } else {
+
+            if (!numTwo) {
                 $result.value = '';
             }
             numTwo += event.target.textContent;
             $result.value += event.target.textContent;
         }
-       
+
     }
 
     document.querySelector('#num-0').addEventListener('click', onClickNumber);
@@ -82,31 +102,29 @@
     document.querySelector('#num-7').addEventListener('click', onClickNumber);
     document.querySelector('#num-8').addEventListener('click', onClickNumber);
     document.querySelector('#num-9').addEventListener('click', onClickNumber);
-    
+
 
 
     const onClickOperator = (op) => () => {
 
-        if(numOne){
+        if (numOne) {
 
             operator = op;
             $operator.value = op;
-        }else{
+        } else {
             alert('숫자를 먼저 입력하시오');
         }
-    
+
     };
 
-    document.querySelector('#plus').addEventListener('click',onClickOperator('+'));
-    document.querySelector('#minus').addEventListener('click',onClickOperator('-'));
-    document.querySelector('#divide').addEventListener('click',onClickOperator('/'));
-    document.querySelector('#multipy').addEventListener('click',onClickOperator('*'));
-    document.querySelector('#calculate').addEventListener('click',() => {
-    
-        if(numTwo)
-        {
-            switch(operator)
-            {
+    document.querySelector('#plus').addEventListener('click', onClickOperator('+'));
+    document.querySelector('#minus').addEventListener('click', onClickOperator('-'));
+    document.querySelector('#divide').addEventListener('click', onClickOperator('/'));
+    document.querySelector('#multipy').addEventListener('click', onClickOperator('*'));
+    document.querySelector('#calculate').addEventListener('click', () => {
+
+        if (numTwo) {
+            switch (operator) {
                 case '+':
                     $result.value = parseInt(numOne) + parseInt(numTwo);
                     break;
@@ -122,25 +140,24 @@
                 case '*':
                     $result.value = numOne * numTwo;
                     break;
-                
+
                 default:
                     break;
             }
-        }else
-        {
+        } else {
             alert('숫자를 입력');
         }
 
     });
-   document.querySelector('#clear').addEventListener('click',() => {
-    
-        numOne ='';
-        operator ='';
-        numTwo ='';
-        $operator.value='';
-        $result.value='';
+    document.querySelector('#clear').addEventListener('click', () => {
 
-   });
+        numOne = '';
+        operator = '';
+        numTwo = '';
+        $operator.value = '';
+        $result.value = '';
 
+    });
 </script>
+
 </html>
