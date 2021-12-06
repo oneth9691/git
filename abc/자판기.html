@@ -119,31 +119,31 @@
     let array_sum = 0; //입금합산
     let last_money = 0; //최종반환금액
 
-    $(".money").click(function () { // 입금
+    $(".money").click(function () { // 1.입금을 하면  array_sum에 돈이 누적된다.
         array_sum += Number($(this).val());
         $(".show").val(array_sum);
     });
 
-    $('.choise').click(function () { // 음료수 선택 버튼
-        $(".show").val(array_sum);
-        price += Number($(this).val());
+    $('.choise').click(function () { // 2. 음료수 선택 버튼
+        $(".show").val(array_sum); 
+        price += Number($(this).val());      // 음료수를 선택하면 음료수 가격이 price 누적된다
         //console.log("구매음료합산금액:" + price);
-        if (array_sum < price) {
+        if (array_sum < price) {                    // 입금금액 보다 음료수 가격이 크면 결제 X
             //console.log("부족합니다:" + price);
             alert("금액이 부족합니다." + array_sum);
         } else {
-            var id = $(this).attr('id');
+            var id = $(this).attr('id');              // 결제한 버튼을 누르면 해당 inventory에서 재고 마이너스1
             //console.log("ID:" + id);
             if (id = "choise01") {
                 Number(inventory01.value) - 1;
-
+                console.log( inventory01.value);
             }
-            last_money = array_sum - price;
-            alert("음료");
-            $(".show").val(last_money);
-            array_sum = last_money;
+            last_money = array_sum - price;             // 총 입금 금액에서  음료수 총 가격 빼기      
+            alert("결제완료");
+            $(".show").val(last_money);                 
+            array_sum = last_money;                      // 남은 금액은  array_sum으로
         }
-        price -= Number($(this).val())
+        price -= Number($(this).val());                //  price에 가격이 계속 누적되서 선택 누르면 가격을 다시 빼줘야함
         // console.log("구매음료합산금액:" + price); return price;
     });
 
