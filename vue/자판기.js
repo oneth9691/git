@@ -12,8 +12,26 @@
 
 
 new Vue({
-    el: '#japangi_left',
+    el: '#japangi',
     data: {
-        title: '음료수 자판기',
+        loginOk:false,
+        title: '',
+        query:'abc',
+        serchResult:[]
+    },
+    methods: {
+        login() {
+            this.loginOk = true;
+        },
+        logout() {
+            this.loginOk = false;
+        },
+        buyBtn() {
+            alert("112221");
+        },
+        onSubmit() {
+         
+        }
     }
+
 })
