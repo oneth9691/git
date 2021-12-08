@@ -6,6 +6,7 @@
 
 <body>
     <div id="japangi" style="width:450px ; height: 800px; border:1px solid">
+        
         <div style="width:60%; height: 99.9%; border:1px solid #000; float: left;">
             <div style="width:49% ; height: 25%; border:1px solid #000; float: left;">
                 <h3></h3>
@@ -13,8 +14,13 @@
                 <button style="width:49% ; position: relative; top:60%; left: 25%" v-on:click="buyBtn">구매</button>
             </div>
             <div style="width:49% ; height: 25%; border:1px solid #000; display: inline-block">
-                <button style="width:49% ; position: relative; top:35%; left: 25%" v-if="loginOk">추가</button>
-                <button style=" width:49% ; position: relative; top:45%; left: 25%" v-if="loginOk">삭제</button>
+                <div v-if="loginOk">
+                    <button>추가</button>
+                    <button>삭제</button>
+                </div>
+                <div v-else>
+                    <button>구매</button>
+                </div>
             </div>
             <div style=" width:49% ; height: 25%; border:1px solid #000; float: left;">
 
@@ -34,9 +40,15 @@
             <button></button>
             <button></button>
             <button></button>
+            <ul>
+                <li v-for="(item,index in list":key="item">
+                    <span class="number" v-on:click="onclick(item)">{{index + 1}} .</span>{{item}} <!--추천검색어 {{item}} {{item.list}} 차이-->
+                </li>
+            </ul>
         </div>
         <form v-on:submit.prevent="onSubmit">
-            <input type = "text" v-model="query">
+            <input type = "text" v-model="id">
+            <input type = "text" v-model="password">
         </form>
         <button v-on:click="login">로그인</button>
         <button v-on:click="logout">로그아웃</button>

@@ -14,23 +14,37 @@
 new Vue({
     el: '#japangi',
     data: {
-        loginOk:false,
+        loginOk:false, // 관리자 모드
         title: '',
-        query:'abc',
-        serchResult:[]
+        id:'',
+        password:'',
+        serchResult:[],
+        list: ['소갈비', '감자', '당근', '무', '깐 밤', '소갈비찜 양념']
     },
     methods: {
         login() {
-            this.loginOk = true;
+            if("" == this.id || "" == this.password) {   // 아이디 & 비밀번호 미입력시
+                alert("아이디 혹은 비밀번호를 입력해주세요");
+            } else if ( "admin" == this.id && "1234" == this.password) { // 아이디 & 비밀번호 체크
+                alert("로그인되었습니다.");
+                this.loginOk = true;
+            } else {
+                alert("회원정보가 없습니다.");
+            }
         },
         logout() {
             this.loginOk = false;
+            
         },
         buyBtn() {
             alert("112221");
         },
         onSubmit() {
          
+        },
+        onclick(keyword){
+            this.query =keyword;
+            this.serch();
         }
     }
 
