@@ -1,58 +1,50 @@
 <html>
 
 <head>
+    <link rel="stylesheet" type="text/css" href="자판기.css" />
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
-    <div id="japangi" style="width:450px ; height: 800px; border:1px solid">
-        
-        <div style="width:60%; height: 99.9%; border:1px solid #000; float: left;">
-            <div style="width:49% ; height: 25%; border:1px solid #000; float: left;">
-                <h3></h3>
-                <input type="text" style="width:100% ; background: #000; color: green; text-align:right">
-                <button style="width:49% ; position: relative; top:60%; left: 25%" v-on:click="buyBtn">구매</button>
+    <div id="japangi">
+        <div class="black-bg" v-if="loginPage == true">
+            <div class="white-bg">
+                <input type="text" class="idBar" v-model="id">
+                <input type="password" class="pwBar" v-model="password">
+                <button v-on:click="login()">로그인</button>
+                <button v-on:click="mainPageMove()">취소</button>
             </div>
-            <div style="width:49% ; height: 25%; border:1px solid #000; display: inline-block">
-                <div v-if="loginOk">
-                    <button>추가</button>
-                    <button>삭제</button>
+        </div>
+        <div class="top">
+            <button v-on:click="loginPageMove()">관리자모드</button>
+        </div>
+        <div class="searchDiv">
+            <form v-on:submit.prevent="onSubmit(search)">
+                <input type="search" class="searchBar" placeholder="검색어를 입력하세요." v-model="query">
+            </form>
+        </div>
+        <div class="mid">
+            <div class="tabDiv">
+                <ul>
+                    <!--추천검색어 {{item}} {{item.list}} 차이-->
+                    <li class="tab" v-for="tab in tabs" :key="tab" v-on:click="tabClick(tab)"
+                        v-bind:class="{active: tab==selectedTab}">
+                        {{tab}}
+                    </li>
+                </ul>
+            </div>
+            <div class="resultDiv" v-if="submitted">
+                <div v-if="searchResult.length">
                 </div>
                 <div v-else>
-                    <button>구매</button>
+                    {{query}}을 찾을 수 없습니다.
                 </div>
             </div>
-            <div style=" width:49% ; height: 25%; border:1px solid #000; float: left;">
+        </div>
+        <div class="bottom"></div>
 
-            </div>
-            <div style=" width:49% ; height: 25%; border:1px solid #000; display: inline-block">
-            </div>
-            <div style="width:49% ; height: 25%; border:1px solid #000; float: left;">
-            </div>
-            <div style="width:49% ; height: 25%; border:1px solid #000; display: inline-block">
-            </div>
-            <div style="width:99% ; height: 24%; border:1px solid #000;"></div>
-        </div>
-        <div style="width:39% ; height: 99.9%; border:1px solid #000; float: left;">
-            <h2>{{title}}</h2>
-            <input type="text" style="background: #000; color: red; text-align:right">
-            <button></button>
-            <button></button>
-            <button></button>
-            <button></button>
-            <ul>
-                <li v-for="(item,index in list":key="item">
-                    <span class="number" v-on:click="onclick(item)">{{index + 1}} .</span>{{item}} <!--추천검색어 {{item}} {{item.list}} 차이-->
-                </li>
-            </ul>
-        </div>
-        <form v-on:submit.prevent="onSubmit">
-            <input type = "text" v-model="id">
-            <input type = "text" v-model="password">
-        </form>
-        <button v-on:click="login">로그인</button>
-        <button v-on:click="logout">로그아웃</button>
     </div>
+
     <script src="자판기.js"></script>
 </body>
 

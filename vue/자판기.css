@@ -1,0 +1,115 @@
+*{
+    margin:0 auto;
+}
+.top{
+    width: 100%;
+    height: 10%;
+    background: rgb(236, 75, 47);  
+}
+.mid{
+    width: 100%;
+    height: 60%;
+    color: white;
+}
+.bottom{
+    width: 100%;
+    height: 20%;
+    background: rgb(240, 237, 237);   
+}
+.searchDiv{
+    width: 100%;
+    height: 10%;
+    background: rgb(236, 75, 47);  
+}
+.searchBar{
+    position: relative;
+    left:50%;
+    top:50%;
+    width:70%;
+    height:50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    font-weight: 600;
+    color: rgb(83, 83, 83);
+}
+.resultDiv{
+    top:10%;
+    width: 100%;
+    height: 100%;
+}
+body{
+    margin:0 auto;
+}
+div{
+    box-sizing: border-box;
+}
+.black-bg{
+    width: 100%;
+    height: 100%;
+    background: rgba(7, 7, 7, 0.678);
+    position: fixed;
+    padding: 20%;
+    z-index: 1;
+}
+.white-bg {
+    position: relative;
+    left:50%;
+    top:50%;
+    width: 150%;
+    height: 60%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+}
+.idBar{
+    position: relative;
+    left:50%;
+    top:50%;
+    width:70%;
+    height:10%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    font-weight: 600;
+    color: rgb(83, 83, 83);
+    border:3px solid #777;
+}
+.pwBar{
+    position: relative;
+    left:50%;
+    top:60%;
+    width:70%;
+    height:10%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    font-weight: 600;
+    color: rgb(83, 83, 83);
+    border:3px solid #777;
+}
+
+ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+li {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border : 0;
+    float: left;
+}
+.tab{
+    width: 50%;
+    height: 12%;
+    background: rgb(255, 106, 96);  
+    font-size: 50px;
+    font-weight: 600; 
+    color: white;
+    text-align: center;
+    padding-top: 60px;
+}
+.active{
+    background: white;
+    color:rgb(236, 75, 47);  
+}

@@ -14,19 +14,27 @@
 new Vue({
     el: '#japangi',
     data: {
-        loginOk:false, // 관리자 모드
-        title: '',
-        id:'',
-        password:'',
-        serchResult:[],
-        list: ['소갈비', '감자', '당근', '무', '깐 밤', '소갈비찜 양념']
+        query: '',
+        loginPage: false, // 관리자 모드
+        id: '',
+        password: '',
+        tabs: ['추천검색어', '최근검색어'],
+        selectedTab: '',
+        searchResult: ['추천검색어', '최근검색어'],
+        submitted: false,
     },
+
+    created() {
+        this.selectedTab = this.tabs[0];
+    },
+
     methods: {
         login() {
-            if("" == this.id || "" == this.password) {   // 아이디 & 비밀번호 미입력시
+            if ("" == this.id || "" == this.password) {   // 아이디 & 비밀번호 미입력시
                 alert("아이디 혹은 비밀번호를 입력해주세요");
-            } else if ( "admin" == this.id && "1234" == this.password) { // 아이디 & 비밀번호 체크
+            } else if ("admin" == this.id && "1234" == this.password) { // 아이디 & 비밀번호 체크
                 alert("로그인되었습니다.");
+                this.loginPage = false;
                 this.loginOk = true;
             } else {
                 alert("회원정보가 없습니다.");
@@ -34,18 +42,23 @@ new Vue({
         },
         logout() {
             this.loginOk = false;
-            
         },
-        buyBtn() {
-            alert("112221");
+        onSubmit(e) {
+            this.search();
         },
-        onSubmit() {
-         
+        search() {
+            this.submitted = true;
         },
-        onclick(keyword){
-            this.query =keyword;
-            this.serch();
+        tabClick(tab) {
+            this.selectedTab = tab;
+        },
+        loginPageMove() {
+            this.loginPage = true;
+        },
+        mainPageMove() {
+            this.loginPage = false;
         }
+
     }
 
 })
