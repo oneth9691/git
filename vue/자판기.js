@@ -10,18 +10,26 @@
 9. 음료수를 정상적으로 구매하면 재고에서 -1이 된다.
 */
 
+/*
+1.
+
+*/
+
 
 new Vue({
     el: '#japangi',
     data: {
-        query: '',
+        query: '', //입력 검색어
         loginPage: false, // 관리자 모드
-        id: '',
-        password: '',
-        tabs: ['추천검색어', '최근검색어'],
-        selectedTab: '',
-        searchResult: ['추천검색어', '최근검색어'],
+        id: '', //아이디
+        password: '', //비밀번호
+        tabs: ['추천검색어', '최근검색어'], // 탭 목록
+        selectedTab: '', // 선택한 택
+        selectedTabResultA:['사이다','콜라','박카스'],
+        selectedTabResultB:[],
+        searchResult: [],  //검색값
         submitted: false,
+        searchCount: 0,
     },
 
     created() {
@@ -29,8 +37,8 @@ new Vue({
     },
 
     methods: {
-        login() {
-            if ("" == this.id || "" == this.password) {   // 아이디 & 비밀번호 미입력시
+        login() { //로그인
+            if ("" == this.id || "" == this.password) {   // 아이디 & 비밀번호 미입력시  //정규표현식추가하기
                 alert("아이디 혹은 비밀번호를 입력해주세요");
             } else if ("admin" == this.id && "1234" == this.password) { // 아이디 & 비밀번호 체크
                 alert("로그인되었습니다.");
@@ -40,23 +48,32 @@ new Vue({
                 alert("회원정보가 없습니다.");
             }
         },
-        logout() {
+        logout() { //로그아웃
             this.loginOk = false;
         },
-        onSubmit(e) {
+        onSubmit() { //검색어 엔터누르면
+            console.log(this.searchCount)
+            //this.selectedTabResultB[ this.searchCount ] = '';
+           // this.selectedTabResultB[ this.searchCount ] = this.query;
+            this.selectedTabResultB.push(this.query);
+            //this.searchCount += 1;
             this.search();
         },
-        search() {
+        search() {  
             this.submitted = true;
         },
-        tabClick(tab) {
+        tabClick(tab) {       // 탭 선택
             this.selectedTab = tab;
+            this.submitted = false;
         },
-        loginPageMove() {
+        loginPageMove() {  // 로그인 모달 오픈
             this.loginPage = true;
         },
-        mainPageMove() {
+        mainPageMove() {    // 로그인 모달 종료
             this.loginPage = false;
+        },
+        searchHistory(){
+
         }
 
     }

@@ -6,16 +6,7 @@
     height: 10%;
     background: rgb(236, 75, 47);  
 }
-.mid{
-    width: 100%;
-    height: 60%;
-    color: white;
-}
-.bottom{
-    width: 100%;
-    height: 20%;
-    background: rgb(240, 237, 237);   
-}
+
 .searchDiv{
     width: 100%;
     height: 10%;
@@ -101,7 +92,7 @@ li {
 }
 .tab{
     width: 50%;
-    height: 12%;
+    height: 6%;
     background: rgb(255, 106, 96);  
     font-size: 50px;
     font-weight: 600; 
@@ -112,4 +103,16 @@ li {
 .active{
     background: white;
     color:rgb(236, 75, 47);  
+}
+
+.tabA{
+    width: 100%;
+    height: 7%;
+    font-size: 50px;
+    font-weight: 600; 
+    color: rgb(148, 75, 75);
+    text-align: center;
+    padding-top: 60px;
+    border-top: 1px solid rgb(216, 216, 216);
+    border-bottom: 1px solid rgb(216, 216, 216);
 }
