@@ -20,21 +20,24 @@ new Vue({
     el: '#japangi',
     data: {
         query: '', //입력 검색어
+        loginOk: 'true',
         loginPage: false, // 관리자 모드
+        updatePage: true,
         id: '', //아이디
         password: '', //비밀번호
-        tabs: ['추천검색어', '최근검색어'], // 탭 목록
-        selectedTab: '', // 선택한 택
-        selectedTabResultA:['사이다','콜라','박카스'],
-        selectedTabResultB:[],
-        searchResult: [],  //검색값
-        submitted: false,
-        searchCount: 0,
+        menu: ['사이다', '콜라'], // 탭 목록
+        // tabs: ['추천검색어', '최근검색어'], // 탭 목록
+        // selectedTab: '', // 선택한 택
+        // selectedTabResultA: ['사이다', '콜라', '박카스'],
+        // selectedTabResultB: [],
+        // searchResult: [],  //검색값
+        // submitted: false,
+        // searchCount: 0,
     },
 
-    created() {
-        this.selectedTab = this.tabs[0];
-    },
+    // created() {
+    //     this.selectedTab = this.tabs[0];
+    // },
 
     methods: {
         login() { //로그인
@@ -51,30 +54,35 @@ new Vue({
         logout() { //로그아웃
             this.loginOk = false;
         },
-        onSubmit() { //검색어 엔터누르면
-            console.log(this.searchCount)
-            //this.selectedTabResultB[ this.searchCount ] = '';
-           // this.selectedTabResultB[ this.searchCount ] = this.query;
-            this.selectedTabResultB.push(this.query);
-            //this.searchCount += 1;
-            this.search();
-        },
-        search() {  
-            this.submitted = true;
-        },
-        tabClick(tab) {       // 탭 선택
-            this.selectedTab = tab;
-            this.submitted = false;
-        },
         loginPageMove() {  // 로그인 모달 오픈
             this.loginPage = true;
         },
         mainPageMove() {    // 로그인 모달 종료
             this.loginPage = false;
         },
-        searchHistory(){
-
+        updatePageMove() {
+            this.updatePage = true;
         }
+
+        // onSubmit() { //검색어 엔터누르면
+        //     console.log(this.searchCount)
+        //     //this.selectedTabResultB[ this.searchCount ] = '';
+        //     // this.selectedTabResultB[ this.searchCount ] = this.query;
+        //     this.selectedTabResultB.push(this.query);
+        //     //this.searchCount += 1;
+        //     this.search();
+        // },
+        // search() {
+        //     this.submitted = true;
+        // },
+        // tabClick(tab) {       // 탭 선택
+        //     this.selectedTab = tab;
+        //     this.submitted = false;
+        // },
+
+        // searchHistory() {
+
+        // }
 
     }
 
