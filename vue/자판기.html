@@ -15,7 +15,7 @@
                 <button v-on:click="mainPageMove()">취소</button>
             </div>
         </div>
-        <div class="update-black-bg" v-if="updatePageMove">
+        <div class="update-black-bg" v-if="updatePage==true">
             <div class="update-white-bg">
                 <div class="update-div">
                     <!-- <span>수량:{{ea}}</span> -->
@@ -23,8 +23,8 @@
                     <button class="updateBtn" v-on:click="updatMinus()">-</button>
                 </div>
                 <div class="update-yesno">
-                    <button class="updateBtn" v-on:click="updatePageMove">확인</button>
-                    <button class="updateBtn">취소</button>
+                    <button class="updateBtn" v-on:click="mainPageMove()">확인</button>
+                    <button class="updateBtn" v-on:click="mainPageMove()">취소</button>
                 </div>
             </div>
         </div>
@@ -34,11 +34,11 @@
         <div class="mid">
             <div>
                 <ul>
-                    <li class="menu" v-for="(item) in menu" :key="item">
+                    <li class="menu" v-for="item in menu" :key="item">
                         {{item}}
 
                         <div v-if="loginOk">
-                            <button v-on:click="updatePageMove">추가</button>
+                            <button v-on:click="updatePageMove(item)">추가</button>
                             <button>삭제</button>
                         </div>
 

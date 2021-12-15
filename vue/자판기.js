@@ -20,9 +20,9 @@ new Vue({
     el: '#japangi',
     data: {
         query: '', //입력 검색어
-        loginOk: 'true',
+        loginOk: true,
         loginPage: false, // 관리자 모드
-        updatePage: true,
+        updatePage: false,
         id: '', //아이디
         password: '', //비밀번호
         menu: ['사이다', '콜라'], // 탭 목록
@@ -59,8 +59,10 @@ new Vue({
         },
         mainPageMove() {    // 로그인 모달 종료
             this.loginPage = false;
+            this.updatePage = false;
         },
-        updatePageMove() {
+        updatePageMove(item) {
+            console.log(item);
             this.updatePage = true;
         }
 
