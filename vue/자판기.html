@@ -6,7 +6,8 @@
 </head>
 
 <body>
-    <div id="japangi">
+    <div class="japangi">
+        <!--로그인 모달창-->
         <div class="black-bg" v-if="loginPage == true">
             <div class="white-bg">
                 <input type="text" class="idBar" v-model="id">
@@ -15,41 +16,96 @@
                 <button v-on:click="mainPageMove()">취소</button>
             </div>
         </div>
-        <div class="update-black-bg" v-if="updatePage==true">
-            <div class="update-white-bg">
-                <div class="update-div">
-                    <!-- <span>수량:{{ea}}</span> -->
-                    <button class="updateBtn" v-on:click="updatePlus()">+</button>
-                    <button class="updateBtn" v-on:click="updatMinus()">-</button>
+        <!--추가 모달창-->
+        <div class="black-bg" v-show="modifyPageCheck">
+            <div class="white-bg">
+                <div>
+                    <span>음료수명:</span>
+                    <input type="text" v-model="drinkName">
+                    <input type="text" v-model="hiddenIdx">
                 </div>
-                <div class="update-yesno">
-                    <button class="updateBtn" v-on:click="mainPageMove()">확인</button>
-                    <button class="updateBtn" v-on:click="mainPageMove()">취소</button>
+                <div>
+                    <span>가격:</span>
+                    <input type="text" v-model="price">
                 </div>
+                <div>
+                    <span>수량:</span>
+                    <input type="text" v-model="drinkEa">
+                </div>
+                <button v-on:click="update(hiddenIdx)">확인</button>
+                <button v-on:click="mainPageMove()">취소</button>
             </div>
         </div>
         <div class="top">
             <button v-on:click="loginPageMove()">관리자모드</button>
         </div>
         <div class="mid">
-            <div>
-                <ul>
-                    <li class="menu" v-for="item in menu" :key="item">
-                        {{item}}
-
-                        <div v-if="loginOk">
-                            <button v-on:click="updatePageMove(item)">추가</button>
-                            <button>삭제</button>
-                        </div>
-
-                        <div v-else>
-                            <button>구매</button>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            <ul v-if="List.length == 1">
+                <li v-for="(item,index) in List" :key="item">
+                    {{index + 1}} {{item}}
+                    <button v-on:click="modifyPageMove(index)">수정</button>
+                    <button v-on:click="listDelete(index)">삭제</button>
+                </li>
+                <li v-for="(item,index) in 5" :key="item">
+                    <button class="plusBtn" v-on:click="modifyPageMove(index+1)">추가</button>
+                </li>
+            </ul>
+            <ul v-else-if="List.length == 2">
+                <li v-for="(item,index) in List" :key="item">
+                    {{index + 1}} {{item}}
+                    <button v-on:click="modifyPageMove(index)">수정</button>ㄴ
+                    <button v-on:click="listDelete(index)">삭제</button>
+                </li>
+                <li v-for="(item,index) in 4" :key="item">
+                    <button class="plusBtn" v-on:click="modifyPageMove(index+2)">추가</button>
+                </li>
+            </ul>
+            <ul v-else-if="List.length == 3">
+                <li v-for="(item,index) in List" :key="item">
+                    {{index + 1}} {{item}}
+                    <button v-on:click="modifyPageMove(index)">수정</button>
+                    <button v-on:click="listDelete(index)">삭제</button>
+                </li>
+                <li v-for="(item,index) in 3" :key="item">
+                    <button class="plusBtn" v-on:click="modifyPageMove(index+3)">추가</button>
+                </li>
+            </ul>
+            <ul v-else-if="List.length == 4">
+                <li v-for="(item,index) in List" :key="item">
+                    {{index + 1}} {{item}}
+                    <button v-on:click="modifyPageMove(index)">수정</button>
+                    <button v-on:click="listDelete(index)">삭제</button>
+                </li>
+                <li v-for="(item,index) in 2" :key="item">
+                    <button class="plusBtn" v-on:click="modifyPageMove(index+4)">추가</button>
+                </li>
+            </ul>
+            <ul v-else-if="List.length == 5">
+                <li v-for="(item,index) in List" :key="item">
+                    {{index + 1}} {{item}}
+                    <button v-on:click="modifyPageMove(index)">수정</button>
+                    <button v-on:click="listDelete(index)">삭제</button>
+                </li>
+                <li v-for="(item,index) in 1" :key="item">
+                    <button class="plusBtn" v-on:click="modifyPageMove(index+5)">추가</button>
+                </li>
+            </ul>
+            <ul v-else-if="List.length == 6">
+                <li v-for="(item,index) in List" :key="item">
+                    {{index + 1}} {{item}}
+                    <button v-on:click="modifyPageMove(index)">수정</button>
+                    <button v-on:click="listDelete(index)">삭제</button>
+                </li>
+            </ul>
+            <ul v-else-if="List.length == 0">
+                <li v-for="(item,index) in 6" :key="item">
+                    <button class="plusBtn" v-on:click="modifyPageMove(index)">추가</button>
+                </li>
+            </ul>
         </div>
-        <div class="bottom"></div>
+        <div class="bottom">
+
+        </div>
     </div>
 
     <script src="자판기.js"></script>

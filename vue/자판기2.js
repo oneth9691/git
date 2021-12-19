@@ -1,16 +1,31 @@
 /*
-1. 관리자 / 고객 (아이디로 구분)
-2. 관리자 추가/삭제 하여 음료 추가 및 삭제 가능 [추가 시 수량 조절 화면]
-3. 
-4. .
-5. 
-6. 
-7. 
+
+자판기  고객 프로세스
+
+1. 돈을 충전한다.
+2. 음료수를 구매한다
+4. 음료수 구매 시 재고 -1을 한다.
+5. 음료수 구매 시 지갑에서 음료수 가격을 뺀다.
+6. 음료수를 받고, 잔돈을 받는다.
+7. 돈이 부족하면 구매를 못한다.
+8. 재고가 부족하면 구매를 못한다.
+9. 반환금 받기 시 반환금은은 0원이 된다.
 
 */
 
+
 /*
-1.
+
+자판기  고객 프로세스
+
+1. 돈을 충전한다.
+2. 음료수를 구매한다
+4. 음료수 구매 시 재고 -1을 한다.
+5. 음료수 구매 시 지갑에서 음료수 가격을 뺀다.
+6. 음료수를 받고, 잔돈을 받는다.
+7. 돈이 부족하면 구매를 못한다.
+8. 재고가 부족하면 구매를 못한다.
+9. 반환금 받기 시 반환금은은 0원이 된다.
 
 */
 
@@ -18,21 +33,16 @@
 new Vue({
     el: '.japangi',
     data: {
-        query: '', //입력 검색어
-        loginOk: true,
-        loginPage: false, // 관리자 모드
-        updatePage: false,
-        List: [],
-        EaList: [],
-        priceList: [],
-        modifyPageCheck: false,
         id: '', //아이디
         password: '', //비밀번호
-        clickIdx: '',
-        drinkName: '',
-        drinkEa: '',
-        price: '',
-        hiddenIdx: '',
+        loginOk: false,     //로그인체크
+        loginPage: false, // 관리자 모드
+        updatePage: false, //수정페이지
+        drinkName: 'aa', //음료수 임름
+        drinkEA: '5',  //음료수 수량
+        drinkPrice: 1000,  //음료수 가격
+        wallet: 0,
+
 
         // tabs: ['추천검색어', '최근검색어'], // 탭 목록
         // selectedTab: '', // 선택한 택
@@ -68,10 +78,9 @@ new Vue({
         mainPageMove() {    // 로그인 모달 종료
             this.loginPage = false;
             this.updatePage = false;
-            this.modifyPageCheck = false;
+
         },
-        updatePageMove(item) {
-            console.log(item);
+        updatePageMove() {
             this.updatePage = true;
         },
 
@@ -95,39 +104,42 @@ new Vue({
 
         // }
 
-        modifyPageMove(index) {
-            this.modifyPageCheck = "true";
-            this.clickIdx = index;
-            this.hiddenIdx = index;
 
-            //debugger;
+        update() {
+            // console.log(this.drinkName);
+            // console.log(this.drinkEA);
+            // console.log(this.drinkPrice);
+            this.mainPageMove();
         },
 
-        update(hiddenIdx) {
-            this.hiddenIdx = "";
-            this.clickIdx = "";
-            this.hiddenIdx = hiddenIdx;
-            console.log(this.hiddenIdx);
-            this.List[this.hiddenIdx] = this.drinkName;
-            this.EaList[this.hiddenIdx] = this.drinkEa;
-            this.priceList[this.hiddenIdx] = this.price;
-            console.log(this.List[this.hiddenIdx]);
-            console.log(this.EaList[this.hiddenIdx]);
-            this.modifyPageCheck = false;
-            this.drinkName = "";
-            this.drinkEa = "";
-            this.hiddenIdx = "";
-            this.clickIdx = "";
-            console.log("배열길이" + this.EaList.length);
-            //debugger;
+        Delete() {
+            this.drinkName = '';
+            this.drinkEA = '';
+            this.drinkPrice = '';
         },
 
-        listDelete(index) {
-            //console.log(index);
-            this.List.splice(index, 1);
-            this.EaList.splice(index, 1);
-            //console.log("배열길이" + this.List.length);
-            //console.log("배열길이" + this.EaList.length);
+        deposit() {
+            this.wallet += 1000;
+        },
+        buy() {
+            if (this.wallet < this.drinkPrice) {
+                alert("금액이 부족합니다.");
+                return;
+            }
+            if (this.drinkEA > 0) {
+                this.drinkEA -= 1;
+                this.wallet -= this.drinkPrice;
+            } else {
+                alert("재고가 소진되었습니다.");
+            }
+        },
+        Changes() {
+            if (this.wallet == 0) {
+                alert("반환금이 없습니다.");
+                return;
+            }
+            alert(this.wallet + "원이 반환되었습니다.");
+            this.wallet = 0;
         }
 
     }
